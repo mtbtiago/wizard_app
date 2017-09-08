@@ -12,5 +12,7 @@
   <%= f.input :first_name %>
   <%= f.input :last_name %>
 
-  <%= f.submit 'Continue' %>
+
+  <%= link_to "Back", step1_wizard_path, class: 'btn btn-default' %>
+  <%= f.submit 'Continue', class: 'btn btn-primary' %>
 <% end %>

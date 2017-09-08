@@ -15,5 +15,6 @@
   <%= f.input :city %>
   <%= f.input :country %>
 
-  <%= f.submit 'Continue' %>
+  <%= link_to "Back", step2_wizard_path, class: 'btn btn-default' %>
+  <%= f.submit 'Continue', class: 'btn btn-primary' %>
 <% end %>
