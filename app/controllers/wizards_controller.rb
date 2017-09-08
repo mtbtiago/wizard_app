@@ -1,5 +1,5 @@
 class WizardsController < ApplicationController
-  before_action :load_user_wizard, except: %i[validate_step]
+  before_action :load_user_wizard, except: %i[validate_step edit]
 
   def validate_step
     current_step = params[:current_step]
@@ -10,8 +10,13 @@ class WizardsController < ApplicationController
 
     if @user_wizard.valid?
       next_step = wizard_user_next_step(current_step)
-      create && return unless next_step
-
+      unless next_step
+        if @user_wizard.user.id.present?
+          update && return
+        else
+          create && return
+        end
+      end
       redirect_to action: next_step
     else
       render current_step
@@ -21,10 +26,28 @@ class WizardsController < ApplicationController
   def create
     if @user_wizard.user.save
       session[:user_attributes] = nil
-      redirect_to root_path, notice: 'User succesfully created!'
+      redirect_to root_path, notice: 'User succesfully CREATED!'
     else
-      redirect_to({ action: Wizard::User::STEPS.first }, alert: 'There were a problem when creating the user.')
+      redirect_to({ action: Wizard::User::STEPS.first }, alert: 'There were a problem when CREATING the user.')
     end
+  end
+
+  def update
+    user = User.find @user_wizard.user.id
+    user.update_attributes(@user_wizard.user.attributes)
+    if user.save
+      session[:user_attributes] = nil
+      redirect_to root_path, notice: 'User succesfully UPDATED!'
+    else
+      redirect_to({ action: Wizard::User::STEPS.first }, alert: 'There were a problem when UPDATING the user.')
+    end
+  end
+
+  def edit
+    @user = User.find params[:id]
+    session[:user_attributes] = @user.attributes
+    # @user_wizard = Wizard::User::Base.new()
+    redirect_to action: Wizard::User::STEPS.first
   end
 
   private

@@ -43,6 +43,8 @@ group :development, :test do
   gem 'capybara'
   gem 'sqlite3'
   gem 'pry-rails'
+  gem 'pry-nav'
+  gem 'database_cleaner'
 end
 
 group :development do

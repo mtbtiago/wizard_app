@@ -26,9 +26,10 @@ RSpec.describe 'the user creation success path' do
       fill_in 'Phone number', with: '+3366666666'
       click_button 'Finish'
 
-      expect(page).to have_content('User succesfully created!')
+      expect(page).to have_content('User succesfully CREATED!')
     end
   end
+
   context 'when user clicks next and back buttons' do
     it 'creates the user' do
       visit '/'
@@ -60,7 +61,7 @@ RSpec.describe 'the user creation success path' do
       fill_in 'Phone number', with: '+3366666666'
       click_button 'Finish'
 
-      expect(page).to have_content('User succesfully created!')
+      expect(page).to have_content('User succesfully CREATED!')
       user = User.last
       expect(user.first_name).to eq 'FooA'
       expect(user.last_name).to eq 'BarA'

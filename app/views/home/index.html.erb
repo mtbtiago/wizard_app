@@ -1,3 +1,7 @@
 <h2>User wizard</h2>
 
 <%= link_to "Create a user", step1_wizard_path, class: 'btn btn-success' %>
+<% @last_user = User.last %>
+<% if @last_user.present? %>
+  <%= link_to "Edit last user", edit_wizard_path(id: @last_user.id), class: 'btn btn-warning' %>
+<% end %>

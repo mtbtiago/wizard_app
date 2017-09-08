@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Wizard::User::Base, type: :model do
-  subject { Wizard::User::Base.new({ first_name: 'foo', last_name: 'bar' }) }
+  subject { Wizard::User::Base.new(first_name: 'foo', last_name: 'bar') }
 
   describe '#user' do
     it 'returns the User instance' do
@@ -20,7 +20,7 @@ RSpec.describe Wizard::User::Base, type: :model do
 end
 
 RSpec.describe Wizard::User::Step1, type: :model do
-  subject { Wizard::User::Step1.new({ first_name: 'foo', last_name: 'bar' }) }
+  subject { Wizard::User::Step1.new(first_name: 'foo', last_name: 'bar') }
 
   it { is_expected.to validate_presence_of(:email) }
   it { is_expected.to allow_value('foo@bar.com').for(:email) }
@@ -28,7 +28,7 @@ RSpec.describe Wizard::User::Step1, type: :model do
 end
 
 RSpec.describe Wizard::User::Step2, type: :model do
-  subject { Wizard::User::Step2.new({ first_name: 'foo', last_name: 'bar' }) }
+  subject { Wizard::User::Step2.new(first_name: 'foo', last_name: 'bar') }
 
   it { is_expected.to validate_presence_of(:email) }
   it { is_expected.to allow_value('foo@bar.com').for(:email) }
@@ -38,7 +38,7 @@ RSpec.describe Wizard::User::Step2, type: :model do
 end
 
 RSpec.describe Wizard::User::Step3, type: :model do
-  subject { Wizard::User::Step3.new({ first_name: 'foo', last_name: 'bar' }) }
+  subject { Wizard::User::Step3.new(first_name: 'foo', last_name: 'bar') }
 
   it { is_expected.to validate_presence_of(:email) }
   it { is_expected.to allow_value('foo@bar.com').for(:email) }
@@ -51,7 +51,7 @@ RSpec.describe Wizard::User::Step3, type: :model do
 end
 
 RSpec.describe Wizard::User::Step4, type: :model do
-  subject { Wizard::User::Step4.new({ first_name: 'foo', last_name: 'bar' }) }
+  subject { Wizard::User::Step4.new(first_name: 'foo', last_name: 'bar') }
 
   it { is_expected.to validate_presence_of(:email) }
   it { is_expected.to allow_value('foo@bar.com').for(:email) }
