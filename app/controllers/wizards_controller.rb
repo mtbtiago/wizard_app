@@ -1,5 +1,5 @@
 class WizardsController < ApplicationController
-  before_action :load_user_wizard, except: %i(validate_step)
+  before_action :load_user_wizard, except: %i[validate_step]
 
   def validate_step
     current_step = params[:current_step]
@@ -10,7 +10,7 @@ class WizardsController < ApplicationController
 
     if @user_wizard.valid?
       next_step = wizard_user_next_step(current_step)
-      create and return unless next_step
+      create && return unless next_step
 
       redirect_to action: next_step
     else
